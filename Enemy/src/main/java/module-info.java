@@ -1,5 +1,5 @@
-module Bullet {
-    exports dk.sdu.cbse.bullet;
+module Enemy {
+    exports dk.sdu.cbse.enemy;
 
     requires Common;
     requires javafx.graphics;

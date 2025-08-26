@@ -6,9 +6,9 @@
     <groupId>dk.sdu.cbse</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>Bullet</artifactId>
+  <artifactId>Enemy</artifactId>
   <packaging>jar</packaging>
-  <name>Bullet</name>
+  <name>Enemy</name>
   <dependencies>
     <dependency>
       <groupId>org.openjfx</groupId>

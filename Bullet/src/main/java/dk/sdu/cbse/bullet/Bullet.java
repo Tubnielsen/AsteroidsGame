@@ -1,5 +1,7 @@
 package dk.sdu.cbse.bullet;
 
-public class Bullet {
+import dk.sdu.cbse.common.data.Entity;
+
+public class Bullet extends Entity {
     
 }
