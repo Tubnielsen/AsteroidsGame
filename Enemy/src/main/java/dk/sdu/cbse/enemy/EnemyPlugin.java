@@ -40,7 +40,7 @@ public class EnemyPlugin {
         
         // Configure the enemy entity
         ship.setRadius(8);
-        ship.setX(gameData.getDisplayWidth() / 2);
+        ship.setX(gameData.getDisplayWidth() * 0.8);
         ship.setY(gameData.getDisplayHeight() / 2);
         ship.setRotation(3.1415f / 2);
         ship.setView(enemyView);
