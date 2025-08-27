@@ -7,8 +7,10 @@ import javafx.scene.image.ImageView;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.services.IEntityProcessingService;
+import dk.sdu.cbse.common.util.BulletSPI;
 
-public class BulletControlSystem implements IBullet {
+public class BulletControlSystem implements BulletSPI, IEntityProcessingService {
     
     private static final float SPEED = 6; // Speed of the bullet
     
@@ -20,7 +22,7 @@ public class BulletControlSystem implements IBullet {
     private static final double PLAYER_SPRITE_X_OFFSET = 64;
     private static final double PLAYER_SPRITE_Y_OFFSET = 64;
 
-    //@Override
+    @Override
     public void process(GameData gameData, World world) {
         for (Entity bullet : world.getEntities(Bullet.class)) {
             double dx = Math.cos(Math.toRadians(bullet.getRotation()));

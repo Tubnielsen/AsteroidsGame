@@ -3,9 +3,10 @@ package dk.sdu.cbse.player;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.services.IEntityProcessingService;
 import dk.sdu.cbse.common.data.GameKeys;
 
-public class PlayerControlSystem {
+public class PlayerControlSystem implements IEntityProcessingService {
     
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
@@ -49,6 +50,6 @@ public class PlayerControlSystem {
 
         /*private Collection<? extends BulletSPI> getBulletSPIs() {
             return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-        } */
+        }*/
     }
 }

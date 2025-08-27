@@ -3,12 +3,13 @@ package dk.sdu.cbse.enemy;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.services.IEntityProcessingService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.Random;
 
-public class EnemyControlSystem {
+public class EnemyControlSystem implements IEntityProcessingService{
     
     private static final double SHOOT_INTERVAL = 2.0; // Shoot every 2 seconds
     private static final double MOVE_CHANGE_INTERVAL = 3.0; // Do not move before 3 seconds
@@ -18,6 +19,7 @@ public class EnemyControlSystem {
 
     private Random random = new Random();
     
+    @Override
     public void process(GameData gameData, World world) {
         // Process enemy entity
         for (Entity enemy : world.getEntities(Enemy.class)) {

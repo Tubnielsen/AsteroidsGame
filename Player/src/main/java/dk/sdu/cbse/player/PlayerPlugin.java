@@ -2,11 +2,12 @@ package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.services.IGamePluginService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class PlayerPlugin {
+public class PlayerPlugin implements IGamePluginService {
     private Player player;
     private static final int PLAYER_SPRITE_WIDTH = 64;
     private static final int PLAYER_SPRITE_HEIGHT = 64;
@@ -15,13 +16,15 @@ public class PlayerPlugin {
     public PlayerPlugin() {
     }
 
+    @Override
     public void start(GameData gameData, World world) {
         // Add player entity to the game world
         player = createPlayer(gameData);
         world.addEntity(player);
     }
 
-    public void stop(World world) {
+    @Override
+    public void stop(GameData gameData, World world) {
         // Remove player entity from the game world
         world.removeEntity(player);
     }

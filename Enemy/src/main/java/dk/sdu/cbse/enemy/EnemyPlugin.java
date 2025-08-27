@@ -2,11 +2,12 @@ package dk.sdu.cbse.enemy;
 
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
+import dk.sdu.cbse.common.services.IGamePluginService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class EnemyPlugin {
+public class EnemyPlugin implements IGamePluginService{
     private Enemy enemy;
     private static final int SPRITE_WIDTH = 64;
     private static final int SPRITE_HEIGHT = 64;
@@ -15,13 +16,15 @@ public class EnemyPlugin {
     public EnemyPlugin() {
     }
 
+    @Override
     public void start(GameData gameData, World world) {
         // Add enemy entity to the game world
         enemy = createEnemy(gameData);
         world.addEntity(enemy);
     }
 
-    public void stop(World world) {
+    @Override
+    public void stop(GameData gameData, World world) {
         // Remove enemy entity from the game world
         world.removeEntity(enemy);
     }
