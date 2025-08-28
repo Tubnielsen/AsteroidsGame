@@ -1,5 +1,6 @@
 package dk.sdu.cbse.enemy;
 
+import dk.sdu.cbse.common.data.Enemy;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;

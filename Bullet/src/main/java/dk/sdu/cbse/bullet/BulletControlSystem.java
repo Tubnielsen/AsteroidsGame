@@ -3,12 +3,13 @@ package dk.sdu.cbse.bullet;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import dk.sdu.cbse.common.data.Bullet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
 import dk.sdu.cbse.common.util.BulletSPI;
+import dk.sdu.cbse.common.data.Bullet;
 
 public class BulletControlSystem implements BulletSPI, IEntityProcessingService {
     

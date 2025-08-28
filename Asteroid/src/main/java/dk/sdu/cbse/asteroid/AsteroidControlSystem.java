@@ -1,5 +1,6 @@
 package dk.sdu.cbse.asteroid;
 
+import dk.sdu.cbse.common.data.Asteroid;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;

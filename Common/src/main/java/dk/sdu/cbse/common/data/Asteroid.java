@@ -1,6 +1,4 @@
-package dk.sdu.cbse.asteroid;
-
-import dk.sdu.cbse.common.data.Entity;
+package dk.sdu.cbse.common.data;
 
 public class Asteroid extends Entity{
     

@@ -1,6 +1,7 @@
 package dk.sdu.cbse.player;
 
 import dk.sdu.cbse.common.data.GameData;
+import dk.sdu.cbse.common.data.Player;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IGamePluginService;
 import javafx.geometry.Rectangle2D;
