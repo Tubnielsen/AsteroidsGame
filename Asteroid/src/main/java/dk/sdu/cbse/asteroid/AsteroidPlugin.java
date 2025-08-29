@@ -23,7 +23,7 @@ public class AsteroidPlugin implements IGamePluginService, IAsteroidSplitter {
     private static final int MEDIUM_SPRITE_HEIGHT = 36;
     private static final int SMALL_SPRITE_WIDTH = 26;
     private static final int SMALL_SPRITE_HEIGHT = 28;
-    private static final int SCALE = 1;
+    private static final float SCALE = 0.75f;
 
     private Random random = new Random();
 

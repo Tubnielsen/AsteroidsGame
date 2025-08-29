@@ -12,7 +12,7 @@ public class EnemyPlugin implements IGamePluginService{
     private Enemy enemy;
     private static final int SPRITE_WIDTH = 64;
     private static final int SPRITE_HEIGHT = 64;
-    private static final double SCALE = 2;
+    private static final double SCALE = 0.5;
 
     public EnemyPlugin() {
     }
