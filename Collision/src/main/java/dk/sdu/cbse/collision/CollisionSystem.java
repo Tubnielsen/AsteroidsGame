@@ -2,11 +2,20 @@ package dk.sdu.cbse.collision;
 
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
+import dk.sdu.cbse.common.data.IAsteroidSplitter;
+import dk.sdu.cbse.common.data.IBullet;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.cbse.common.data.Bullet;
 import dk.sdu.cbse.common.data.Enemy;
 import dk.sdu.cbse.common.data.Player;
+
+import static java.util.stream.Collectors.toList;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.ServiceLoader;
+
 import dk.sdu.cbse.common.data.Asteroid;
 
 public class CollisionSystem implements IPostEntityProcessingService {
@@ -27,7 +36,7 @@ public class CollisionSystem implements IPostEntityProcessingService {
                 }
 
                 // Check if entities are colliding (using pythagorean theorem) and handle it if they are
-                if (checkCollision(entityA, entityB)) handleCollision(entityA, entityB, world);
+                if (checkCollision(entityA, entityB)) handleCollision(entityA, entityB, gameData, world);
             }
         }
     }
@@ -46,29 +55,41 @@ public class CollisionSystem implements IPostEntityProcessingService {
         return distance < collisionDistance;
     }
 
-    private void handleCollision(Entity entityA, Entity entityB, World world) {
+    private void handleCollision(Entity entityA, Entity entityB, GameData gameData, World world) {
         // If collision between a bullet and asteorid. remove bullet and split asteroid
         if (entityA instanceof Bullet && entityB instanceof Asteroid) {
-        
+            world.removeEntity(entityA);
+            getAsteroidSPIs().stream().findFirst().ifPresent(
+                spi -> {
+                    Asteroid asteroid = (Asteroid) entityB;
+                    if (asteroid.getSize() <= 1) {
+                        world.removeEntity(entityB);
+                    } else {
+                        List<Asteroid> fragments = spi.splitAsteroid((Asteroid) entityB, gameData);
+                        for (Asteroid fragment : fragments) {
+                            world.addEntity(fragment);
+                        }
+                    }
+                }
+            );
         // If collision between bullet and enemy ship, remove bullet and damage enemy ship
         } else if (entityA instanceof Bullet && entityB instanceof Enemy) {
-
         }
         // If collision between bullet and player ship, remove bullet and damage player ship
         else if (entityA instanceof Bullet && entityB instanceof Player) {
-        
         }
         // If collision between player ship and enemy ship, both ships gets destroyed
         else if (entityA instanceof Player && entityB instanceof Enemy) {
-        
         }
         // If collision between player ship and asteroid, player ship gets damaged and asteroid is destroyed
         else if (entityA instanceof Player && entityB instanceof Asteroid) {
-        
         }
         // If collision between enemy ship and asteroid, enemy ship gets damaged and asteroid is destroyed
         else if (entityA instanceof Enemy && entityB instanceof Asteroid) {
-        
         }
+    }
+
+    private Collection<? extends IAsteroidSplitter> getAsteroidSPIs() {
+        return ServiceLoader.load(IAsteroidSplitter.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }

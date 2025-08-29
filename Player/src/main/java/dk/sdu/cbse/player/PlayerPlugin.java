@@ -12,7 +12,7 @@ public class PlayerPlugin implements IGamePluginService {
     private Player player;
     private static final int PLAYER_SPRITE_WIDTH = 64;
     private static final int PLAYER_SPRITE_HEIGHT = 64;
-    private static final double SCALE = 2;
+    private static final double SCALE = 0.5;
 
     public PlayerPlugin() {
     }
@@ -46,8 +46,9 @@ public class PlayerPlugin implements IGamePluginService {
         ship.setRadius(8);
         ship.setX(gameData.getDisplayWidth() / 2);
         ship.setY(gameData.getDisplayHeight() / 2);
-        ship.setRotation(3.1415f / 2);
+        ship.setRotation(0);
         ship.setView(playerView);
+        playerView.setRotate(Math.toDegrees(ship.getRotation()));
 
         return ship;
     }

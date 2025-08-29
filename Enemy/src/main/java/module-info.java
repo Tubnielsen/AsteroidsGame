@@ -10,5 +10,5 @@ module Enemy {
     provides IGamePluginService with dk.sdu.cbse.enemy.EnemyPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.enemy.EnemyControlSystem;
     
-    uses dk.sdu.cbse.common.util.BulletSPI;
+    uses dk.sdu.cbse.common.data.IBullet;
 }

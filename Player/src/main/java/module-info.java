@@ -10,5 +10,5 @@ module Player {
     provides IGamePluginService with dk.sdu.cbse.player.PlayerPlugin;
     provides IEntityProcessingService with dk.sdu.cbse.player.PlayerControlSystem;
     
-    uses dk.sdu.cbse.common.util.BulletSPI;
+    uses dk.sdu.cbse.common.data.IBullet;
 }

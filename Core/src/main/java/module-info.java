@@ -1,12 +1,17 @@
 module Core {
-    //requires Common;
+    requires javafx.graphics;
+    requires javafx.controls;
+    requires spring.context;
+    requires spring.core;
+    requires spring.beans;
 
-    //requires javafx.graphics;
-    //requires spring.context;
-    //requires spring.core;
-    //requires spring.beans;
+    requires Common;
+    
+    opens dk.sdu.cbse.core to javafx.graphics, spring.core;
 
-    exports dk.sdu.cbse.main;
+    uses dk.sdu.cbse.common.services.IGamePluginService;
+    uses dk.sdu.cbse.common.services.IEntityProcessingService;
+    uses dk.sdu.cbse.common.services.IPostEntityProcessingService;
 
-    //opens dk.sdu.cbse.core to spring.core, javafx.graphics;
+    exports dk.sdu.cbse.core;
 }

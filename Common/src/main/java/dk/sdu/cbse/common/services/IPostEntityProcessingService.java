@@ -24,16 +24,8 @@ public interface IPostEntityProcessingService {
      * 
      * <h3>Post-conditions:</h3>
      * <ul>
-     *   <li>All post-processing operations are complete</li>
      *   <li>Invalid or destroyed entities are removed from the world</li>
      *   <li>World state is finalized and ready for rendering</li>
-     * </ul>
-     * 
-     * <h3>Common Use Cases:</h3>
-     * <ul>
-     *   <li>Collision detection between entities</li>
-     *   <li>Removing entities marked for deletion</li>
-     *   <li>Validating entity states and positions</li>
      * </ul>
      * 
      * @param gameData the current game configuration and state data

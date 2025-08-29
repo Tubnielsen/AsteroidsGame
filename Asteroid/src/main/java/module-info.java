@@ -9,4 +9,5 @@ module Asteroid {
 
     provides IEntityProcessingService with dk.sdu.cbse.asteroid.AsteroidControlSystem;
     provides IGamePluginService with dk.sdu.cbse.asteroid.AsteroidPlugin;
+    provides dk.sdu.cbse.common.data.IAsteroidSplitter with dk.sdu.cbse.asteroid.AsteroidPlugin;
 }

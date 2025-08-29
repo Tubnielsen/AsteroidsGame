@@ -8,7 +8,7 @@ import dk.sdu.cbse.common.services.IEntityProcessingService;
 
 public class AsteroidControlSystem implements IEntityProcessingService {
 
-    private static final float SPEED = 0.3f;
+    private static final float SPEED = 1;
 
     @Override
     public void process(GameData gameData, World world) {

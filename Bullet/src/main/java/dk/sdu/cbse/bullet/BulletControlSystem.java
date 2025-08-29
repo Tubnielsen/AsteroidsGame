@@ -4,24 +4,24 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import dk.sdu.cbse.common.data.Bullet;
+import dk.sdu.cbse.common.data.IBullet;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
-import dk.sdu.cbse.common.util.BulletSPI;
 import dk.sdu.cbse.common.data.Bullet;
 
-public class BulletControlSystem implements BulletSPI, IEntityProcessingService {
+public class BulletControlSystem implements IBullet, IEntityProcessingService {
     
     private static final float SPEED = 6; // Speed of the bullet
     
     private static final int BULLET_SPRITE_WIDTH = 9;
     private static final int BULLET_SPRITE_HEIGHT = 27;
-    private static final double SCALE = 2;
+    private static final double SCALE = 0.5;
 
-    private static final double BULLET_SPAWN_OFFSET = 32;
-    private static final double PLAYER_SPRITE_X_OFFSET = 64;
-    private static final double PLAYER_SPRITE_Y_OFFSET = 64;
+    private static final double BULLET_SPAWN_OFFSET = 6;
+    private static final double PLAYER_SPRITE_X_OFFSET = 16;
+    private static final double PLAYER_SPRITE_Y_OFFSET = 16;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -40,9 +40,10 @@ public class BulletControlSystem implements BulletSPI, IEntityProcessingService 
         }
     }
 
+    @Override
     public Bullet createBullet(Entity shooter, GameData gameData) {
         Bullet bullet = new Bullet();
-
+        System.out.println("Creating bullet");
         // Set up the bullet's sprite
         Image spriteImage = new Image(getClass().getResource("/bullet.png").toExternalForm());
         ImageView bulletView = new ImageView(spriteImage);
@@ -54,8 +55,8 @@ public class BulletControlSystem implements BulletSPI, IEntityProcessingService 
         // Set bullet position and properties
         double dx = Math.cos(Math.toRadians(shooter.getRotation()));
         double dy = Math.sin(Math.toRadians(shooter.getRotation()));
-        bullet.setX(shooter.getX() + dx + BULLET_SPAWN_OFFSET + PLAYER_SPRITE_X_OFFSET);
-        bullet.setY(shooter.getY() + dy + BULLET_SPAWN_OFFSET + PLAYER_SPRITE_Y_OFFSET);
+        bullet.setX(shooter.getX() + dx * BULLET_SPAWN_OFFSET + PLAYER_SPRITE_X_OFFSET);
+        bullet.setY(shooter.getY() + dy * BULLET_SPAWN_OFFSET + PLAYER_SPRITE_Y_OFFSET);
         bullet.setRotation(shooter.getRotation());
         bullet.setRadius(1);
         

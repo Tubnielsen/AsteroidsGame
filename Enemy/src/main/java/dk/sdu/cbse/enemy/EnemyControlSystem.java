@@ -3,12 +3,18 @@ package dk.sdu.cbse.enemy;
 import dk.sdu.cbse.common.data.Enemy;
 import dk.sdu.cbse.common.data.Entity;
 import dk.sdu.cbse.common.data.GameData;
+import dk.sdu.cbse.common.data.IBullet;
 import dk.sdu.cbse.common.data.World;
 import dk.sdu.cbse.common.services.IEntityProcessingService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
+import static java.util.stream.Collectors.toList;
+
+import java.util.Collection;
 import java.util.Random;
+import java.util.ServiceLoader;
 
 public class EnemyControlSystem implements IEntityProcessingService{
     
@@ -45,7 +51,7 @@ public class EnemyControlSystem implements IEntityProcessingService{
             }
             
             // Shooting behavior
-            handleShooting(enemy, gameData);
+            handleShooting(enemy, gameData, world);
         }
     }
         
@@ -53,7 +59,7 @@ public class EnemyControlSystem implements IEntityProcessingService{
         // Change direction and move at random times but not before set interval.
         if (moveTimer >= MOVE_CHANGE_INTERVAL || random.nextDouble() < 0.008) {
             // Generate random direction
-            double angle = random.nextDouble() * 2;
+            double angle = random.nextDouble() * 100;
             enemy.setRotation(Math.toRadians(angle));
             double dx = Math.cos(Math.toRadians(enemy.getRotation()));
             double dy = Math.sin(Math.toRadians(enemy.getRotation()));
@@ -64,14 +70,18 @@ public class EnemyControlSystem implements IEntityProcessingService{
         }
     }
     
-    private void handleShooting(Entity enemy, GameData gameData) {
+    private void handleShooting(Entity enemy, GameData gameData, World world) {
         // Shoot at specific intervals.
         if (shootTimer >= SHOOT_INTERVAL) {
             // Create and add bullet to world
-            /*getBulletSPIs().stream().findFirst().ifPresent(
+            getBulletSPIs().stream().findFirst().ifPresent(
                 spi -> world.addEntity(spi.createBullet(enemy, gameData))
-            );*/
+            );
             shootTimer = 0;
         }
+    }
+
+    private Collection<? extends IBullet> getBulletSPIs() {
+        return ServiceLoader.load(IBullet.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }

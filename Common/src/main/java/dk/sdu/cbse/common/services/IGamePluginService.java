@@ -18,12 +18,10 @@ public interface IGamePluginService {
      * <ul>
      *   <li>gameData and world must not be null</li>
      *   <li>gameData display dimensions must be positive</li>
-     *   <li>world must be ready for entity addition</li>
      * </ul>
      * 
      * <h3>Post-conditions:</h3>
      * <ul>
-     *   <li>Plugin is fully initialized and ready for processing</li>
      *   <li>Initial entities are added to the world</li>
      *   <li>Resources are loaded and available</li>
      * </ul>
@@ -42,14 +40,12 @@ public interface IGamePluginService {
      * <h3>Pre-conditions:</h3>
      * <ul>
      *   <li>gameData and world must not be null</li>
-     *   <li>Plugin must have been previously started</li>
      * </ul>
      * 
      * <h3>Post-conditions:</h3>
      * <ul>
-     *   <li>All plugin-managed entities are removed from the world</li>
+     *   <li>All remaning entities are removed from the world</li>
      *   <li>All resources are properly released</li>
-     *   <li>Plugin is in a clean, uninitialized state</li>
      * </ul>
      * 
      * @param gameData the game configuration and state data
